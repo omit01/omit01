@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S.I.N.T. - Verificatie Portaal</title>
+    <style>
+        /* Basisinstellingen gelijk aan de email */
+        body {
+            background-color: #f4f4f4; /* Iets donkerder dan email voor website-look */
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #101112;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 600px;
+            margin: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #9b111e;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        h2 {
+            color: #9b111e;
+            font-size: 22px;
+            margin-top: 0;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.5;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        /* Formulier Stijl */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box; /* Zorgt dat padding binnen de breedte valt */
+        }
+
+        input[type="text"]:focus {
+            border-color: #9b111e;
+            outline: none;
+            background-color: #fffbfc;
+        }
+
+        /* De knop in dezelfde stijl als de email */
+        .btn {
+            background-color: #9b111e;
+            color: #ffffff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #7a0d17;
+        }
+
+        /* De 'Gedicht' sectie en loader */
+        .hidden {
+            display: none;
+        }
+
+        #poem-container {
+            background-color: #fff;
+            padding: 20px;
+            border: 5px solid #9b111e; /* Feestelijke rand */
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .poem-text {
+            font-family: 'Georgia', serif; /* Iets klassieker voor het gedicht */
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+            white-space: pre-wrap; /* Behoudt de enters in de tekst */
+        }
+
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #9b111e;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>S.I.N.T. Beveiligde Omgeving</h1>
+            <div style="font-size: 12px; margin-top: 5px;">Dossier: PIET-2025-NL42-NET</div>
+        </div>
+
+        <div id="login-screen" class="content">
+            <h2>Identiteitsverificatie</h2>
+            <p>Om uw openstaande cadeau veilig te stellen en blokkade te voorkomen, dient u uw adresgegevens te bevestigen en de ingeladen tekst voor te dragen.</p>
+            
+            <form id="phishing-form">
+                <div class="form-group">
+                    <label for="fullname">Naam geregistreerde:</label>
+                    <input type="text" id="fullname" placeholder="Bijv. Dieuwertje Blok" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Straat en huisnummer:</label>
+                    <input type="text" id="address" placeholder="Bijv. Decemberstraat 5" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="city">Woonplaats:</label>
+                    <input type="text" id="city" value="Amersfoort" readonly style="background-color: #eee; color: #777;">
+                </div>
+
+                <div id="error-msg" class="error-message">Gegevens komen niet overeen met het dossier. Probeer het opnieuw.</div>
+
+                <button type="submit" class="btn">BEVESTIG IDENTITEIT</button>
+            </form>
+            
+            <p style="font-size: 12px; color: #999; margin-top: 20px; text-align: center;">
+                Deze verbinding is beveiligd door Sinterklaas Security Services (SSS).
+            </p>
+        </div>
+
+        <div id="loading-screen" class="content hidden" style="text-align: center;">
+            <h2>Gegevens controleren...</h2>
+            <div class="loader"></div>
+            <p>Moment geduld a.u.b. We verbinden met de database in Spanje.</p>
+        </div>
+
+        <div id="poem-screen" class="content hidden">
+            <div id="poem-container">
+                <h2 style="text-align: center; border: none; font-size: 28px;">🎁 Surprise! 🎁</h2>
+                <div class="poem-text">
+Lieve Nettie,
+
+Sint keek in jouw agenda, en wat zag hij daar? 
+Jij bent dol op artiesten met de letter K. 
+Bij Kane en Kensington stond jij in de zaal,
+Die concerten vond je prachtig, allemaal. 
+En over twee weken is de pret nog niet loos,
+Want dan ga je kijken naar Sara Kroos.
+
+Niet alleen jouw muzieksmaak vindt Sint heel fijn,
+Ook hoe jij het middelpunt van de familie kan zijn.
+Je houdt de boel bij elkaar, op jouw manier,
+Dat doet de Sint en Piet veel plezier.
+Op 30 augustus was het in Amersfoort groot feest,
+Waar iedereen dolgraag is geweest.
+Nou ja, bijna iedereen, dat moet Sint bekennen,
+Want Annie had in de app al laten kennen: 
+"Is niks voor mij," zo schreef ze vastberaden,
+"Dus ik sla over," voordat we de datum hadden geraden.
+
+Toch was er ook een zware tijd,
+Toen Cor koos voor zijn eigen afscheid.
+Hij nam zelf het besluit om te gaan,
+En ook toen stond jij de familie bij, met een traan.
+Met een lach en een traan, zij aan zij,
+Stond jij in die tijd de familie zo krachtig bij.
+
+De Sint zag in het Grote Boek ook staan,
+Dat je al een tijdje met spierreuma moet gaan. 
+Je zorgt voor iedereen, dat is jouw aard, 
+Maar ook jouw gezondheid is veel waard. 
+Dus Nettie, neem de waarschuwing van Sint ter harte:
+Ga niet schoonmaken, zeker niet in and’re smarten.
+Laat de bezem staan en neem wat meer rust,
+Want dat heeft jouw lijfje het meest gewenst en gewust.
+
+Je bent niet alleen zorgzaam, maar ook heel kien,
+Een scherpere computer-oma heeft Sint zelden gezien.
+Want op de laptop ben jij ontzettend waakzaam,
+Al die neppe mailtjes? Die zijn kansloos, allemaal.
+Ze proberen je te foppen, keer op keer,
+Maar Nettie trapt er niet in, nee, nimmermeer!
+... Of toch wel? ;-)
+
+Gelukkig maak je ook tijd voor gezelligheid,
+Zoals laatst in Tilburg, bij die diplomastrijd.
+We hebben daar heerlijk in een treinstel gegeten,
+Dat is de Sint (en zijn Pieten) nog niet vergeten.
+Die culinaire toer beviel ons beiden heel goed,
+Dus kom ik na, wat ik je daar heb beloofd:
+
+Kijk even of 5 januari nog vrij is in de agenda, 
+Want we gaan niet naar een simpele hacienda.
+We gaan naar Utrecht, naar een restaurant zo fijn,
+Waar ze trots bezitter van een Michelin-ster zijn.
+
+Maar... Sint kan niet met lege handen komen,
+Dus heeft hij ook iets fysieks meegenomen.
+Iets warms uit Spanje, recht van de boot,
+Voor koude voeten, klein of groot.
+
+Geniet van de warmte, het feest en elkaar,
+En heel veel geluk in het nieuwe jaar!
+
+Groeten van Sint & Piet
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('phishing-form').addEventListener('submit', function(e) {
+            e.preventDefault(); // Voorkom dat de pagina herlaadt
+
+            // Haal de waarden op
+            var nameInput = document.getElementById('fullname').value.toLowerCase();
+            var addressInput = document.getElementById('address').value.toLowerCase();
+            var errorMsg = document.getElementById('error-msg');
+
+            // Simpele check (hoeft niet exact te zijn, om frustratie te voorkomen, 
+            // maar moet wel een beetje lijken op Nettie of Meridiaan)
+            // We checken of de velden niet leeg zijn (wat 'required' al doet)
+            
+            // Schakel over naar laadscherm
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('loading-screen').style.display = 'block';
+
+            // Wacht 2.5 seconden voor het "effect" en toon dan het gedicht
+            setTimeout(function() {
+                document.getElementById('loading-screen').style.display = 'none';
+                document.getElementById('poem-screen').style.display = 'block';
+                document.getElementById('poem-screen').classList.remove('hidden');
+                
+                // Scroll naar boven zodat ze de titel ziet
+                window.scrollTo(0,0);
+            }, 2500);
+        });
+    </script>
+</body>
+</html>
