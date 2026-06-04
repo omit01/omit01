@@ -6,15 +6,15 @@
  </br>
 <p align="center">
 <samp>
-I'm Timo, a econometrics and operational research student. I am eager to learn and enjoy turning problems into well-crafted solutions. I am highly analytical and quickly grasp complex issues. Additionally, I have a wealth of IT knowledge. I use this knowledge for my studies, my work, and in volunteer work for Scouting. I'm enthousiastic about programming, optimization and showing this in nice graphs.
+I'm Timo, a econometrics and operational research student. I am eager to learn and enjoy turning problems into well-crafted solutions. I am analytical and quickly grasp complex issues. Additionally, I have a wealth of IT knowledge. I use this knowledge for my studies, my work, and in volunteer work for Scouting. I'm enthousiastic about programming, optimization and showing this in nice graphs.
 </samp>
 </br></br>
 <samp>
-In my study and during my job I work a lot with linear optimizations, solvers, regressions, predictive models, etc. I also have a solid base in mathemetics, economics and programming. Python is favorite, but R, Matlab, Java and C# are also in my skill set.
+In my study and during my job I work a lot with linear optimizations, solvers, regressions, predictive models, etc. I also have a solid base in mathemetics, economics and programming. Python is favorite, but PHP, JS, Java, R, Matlab, and C# are also in my skill set (in that order).
 </samp>
 </br></br>
 <samp>
-In my GitHub you can find a lot of school projects, some work for scouting and some ideas.
+In my GitHub you can find a lot of university projects, some work for scouting and some ideas.
 </samp>
 </p>
 <samp>
